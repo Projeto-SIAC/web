@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Auth from '../helpers/auth'
+import Auth from 'utils/auth'
 import { Redirect } from 'react-router-dom'
 
 import './Login.css'
