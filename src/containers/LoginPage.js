@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
+import gql from 'graphql-tag'
+import styled from 'styled-components'
 
 import { 
   Button,
@@ -9,9 +11,10 @@ import {
   Form, 
   Icon,
   Input,
+  message
 } from 'antd'
 
-import Auth from 'utils/auth'
+import { AUTH_TOKEN_KEY } from '../constants'
 
 import LogoSrc from 'assets/images/logo.svg'
 
@@ -49,20 +52,36 @@ const Image = styled.img`
   height: 3rem;
   width: 3rem;
 `
-
 class LoginPage extends Component {
   state = {
-    redirectToReferrer: false
+    redirectToReferrer: false,
+    isLoading: false
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
 
-    this.props.form.validateFields((err, values) => {
-      if (!err) console.log('Received values of form: ', values)
+    this.props.form.validateFields(async (err, values) => {
+      if (err) return
+
+      this.setState({isLoading: true})
+
+      try {
+        const result = await this.props.loginMutation({
+          variables: values
+        })
+        const { token } = result.data.tokenAuth
+        console.log('Gonna set...', result, AUTH_TOKEN_KEY, token)
+        localStorage.setItem(AUTH_TOKEN_KEY, token)
+        console.log('setted.')
+        this.setState({ redirectToReferrer: true })
+      } catch (e) {
+        message.error('As credenciais inseridas não são válidas!')
+        this.setState({isLoading: false})
+      }
+
     })
   }
-
   render() {
     const { from } = this.props.location.state || { from: { pathname: "/" } }
     const { redirectToReferrer } = this.state
@@ -94,7 +113,7 @@ class LoginPage extends Component {
               )}
             </FormItem>
             <FormItem>
-              <FixedButton type="primary" htmlType="submit">
+              <FixedButton type="primary" htmlType="submit" loading={this.state.isLoading}>
                 Acessar
               </FixedButton>
             </FormItem>
@@ -105,4 +124,12 @@ class LoginPage extends Component {
   }
 }
 
-export default Form.create()(LoginPage)
+const LOGIN_MUTATION = gql`
+  mutation LoginMutation($username: String!,$password: String!) {
+    tokenAuth(username: $username, password: $password) {
+      token
+    }
+  }
+`
+
+export default graphql(LOGIN_MUTATION, {name: 'loginMutation'})(Form.create()(LoginPage))
