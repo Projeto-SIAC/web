@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
 
@@ -73,6 +74,7 @@ class LoginPage extends Component {
 
     return (
       <Container>
+        <Helmet title="Identifique-se - SIAC" />
         <Box>
           <Image src={LogoSrc} alt="Logo do SIAC" />
           <Divider />
