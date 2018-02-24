@@ -1,8 +1,20 @@
 import React, { Component } from 'react'
-import Auth from 'utils/auth'
+import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
 
-import './Login.css'
+import Auth from 'utils/auth'
+
+const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`
+
+const Form = styled.form`
+  max-width: 300px;
+`
 
 export default class Login extends Component {
   state = {
@@ -18,12 +30,12 @@ export default class Login extends Component {
     }
 
     return (
-      <div className="Login-container">
+      <Container>
         <h1>SIAC</h1>
-        <form className="Login-form">
+        <Form>
           <button onClick={() => Auth.authenticate(() => this.setState({redirectToReferrer: true}))}>Login</button>
-        </form>
-      </div>
+        </Form>
+      </Container>
     )
   }
 }
