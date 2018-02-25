@@ -5,10 +5,10 @@ import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
 
-import { 
+import {
   Button,
   Divider,
-  Form, 
+  Form,
   Icon,
   Input,
   message
