@@ -71,9 +71,7 @@ class LoginPage extends Component {
           variables: values
         })
         const { token } = result.data.tokenAuth
-        console.log('Gonna set...', result, AUTH_TOKEN_KEY, token)
         localStorage.setItem(AUTH_TOKEN_KEY, token)
-        console.log('setted.')
         this.setState({ redirectToReferrer: true })
       } catch (e) {
         message.error('As credenciais inseridas não são válidas!')
