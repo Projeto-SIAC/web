@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import gql from 'graphql-tag'
 
+import AppLayout from 'components/AppLayout'
+
 import DashboardPage from './DashboardPage'
 import MyQuestionsPage from './MyQuestionsPage'
 
@@ -38,13 +40,13 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <AppLayout>
         <Helmet titleTemplate="%s - SIAC" />
         <Switch>
           <Route path="/questoes" component={MyQuestionsPage} />
           <Route path="/" component={DashboardPage} />
         </Switch>
-      </div>
+      </AppLayout>
     )
   }
 }

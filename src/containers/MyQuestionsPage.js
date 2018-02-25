@@ -1,12 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { Breadcrumb, Icon } from 'antd'
+import PageLayout from 'components/PageLayout'
+
 const MyQuestionsPage = () => {
   return (
-    <div>
-      <h1>Minhas questões</h1>
+    <PageLayout breadcrumb={() => <Breadcrumb style={{ margin: '16px 0' }}>
+      <Breadcrumb.Item><Icon type="home" /></Breadcrumb.Item>
+      <Breadcrumb.Item>Questões</Breadcrumb.Item>
+    </Breadcrumb>}>
+      <h1>Questões</h1>
       <Link to='/'>Início</Link>
-    </div>
+    </PageLayout>
   )
 }
 

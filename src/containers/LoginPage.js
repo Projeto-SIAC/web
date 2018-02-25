@@ -5,10 +5,10 @@ import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
 
-import { 
+import {
   Button,
   Divider,
-  Form, 
+  Form,
   Icon,
   Input,
   message
@@ -31,11 +31,13 @@ const Container = styled.div`
 `
 
 const Box = styled.main`
+  opacity: 0;
+  transition: opacity .75s ease .5s;
   width: 20rem;
   box-shadow: 0rem 0.5rem 1.5rem -0.25rem rgba(25,25,35,0.25);
   border-radius: 0.35rem;
   padding: 2.5rem;
-  background-color: #fff;
+  background-color: #f9f9f9;
 `
 
 const FixedButton = styled(Button)`
@@ -52,16 +54,11 @@ const Image = styled.img`
   height: 3rem;
   width: 3rem;
 `
-
-const Footer = styled.p`
-  font-size: 0.8rem;
-  margin-top: 2rem;
-  color: #595959;
-`
 class LoginPage extends Component {
   state = {
     redirectToReferrer: false,
-    isLoading: false
+    isLoading: false,
+    visible: false
   }
 
   handleSubmit = (e) => {
@@ -86,6 +83,11 @@ class LoginPage extends Component {
 
     })
   }
+
+  componentDidMount() {
+    this.setState({visible: true});
+  }
+
   render() {
     const { from } = this.props.location.state || { from: { pathname: "/" } }
     const { redirectToReferrer } = this.state
@@ -98,7 +100,7 @@ class LoginPage extends Component {
     return (
       <Container>
         <Helmet title="Identifique-se - SIAC" />
-        <Box>
+        <Box style={{opacity: this.state.visible ? 1 : 0}}>
           <Image src={LogoSrc} alt="Logo do SIAC" />
           <Divider />
           <Form onSubmit={this.handleSubmit}>
@@ -123,7 +125,6 @@ class LoginPage extends Component {
             </FormItem>
           </Form>
         </Box>
-        <Footer>2018 <Icon type="copyright" /> Projeto SIAC</Footer>
       </Container>
     )
   }
