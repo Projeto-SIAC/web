@@ -52,6 +52,12 @@ const Image = styled.img`
   height: 3rem;
   width: 3rem;
 `
+
+const Footer = styled.p`
+  font-size: 0.8rem;
+  margin-top: 2rem;
+  color: #595959;
+`
 class LoginPage extends Component {
   state = {
     redirectToReferrer: false,
@@ -117,6 +123,7 @@ class LoginPage extends Component {
             </FormItem>
           </Form>
         </Box>
+        <Footer>2018 <Icon type="copyright" /> Projeto SIAC</Footer>
       </Container>
     )
   }
