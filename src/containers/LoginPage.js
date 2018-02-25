@@ -32,7 +32,7 @@ const Container = styled.div`
 
 const Box = styled.main`
   opacity: 0;
-  transition: opacity .5s ease .5s;
+  transition: opacity .75s ease .5s;
   width: 20rem;
   box-shadow: 0rem 0.5rem 1.5rem -0.25rem rgba(25,25,35,0.25);
   border-radius: 0.35rem;
@@ -53,12 +53,6 @@ const Image = styled.img`
   margin: 0 auto;
   height: 3rem;
   width: 3rem;
-`
-
-const Footer = styled.p`
-  font-size: 0.8rem;
-  margin-top: 2rem;
-  color: #595959;
 `
 class LoginPage extends Component {
   state = {

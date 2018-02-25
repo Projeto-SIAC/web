@@ -1,20 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd'
 
-import LogoSrc from 'assets/images/logo.svg'
+const Container = styled.div`
+  max-width: 960px;
+  margin: 0 auto;
+`
 
-const { Header, Content, Footer, Sider } = Layout
-const SubMenu = Menu.SubMenu
+const InnerContainer = styled.main`
+  background: #fff;
+  padding: 1.75rem;
+  borderRadius: 0.2rem;
+`
 
 const PageLayout = ({breadcrumb, children}) => {
   return (
-    <div style={{maxWidth: 720, margin: '0 auto'}}>
+    <Container>
       {breadcrumb()}
-      <div style={{ background: '#fff', padding: 24, borderRadius: '0.2rem' }}>
+      <InnerContainer>
         {children}
-      </div>
-    </div>
+      </InnerContainer>
+    </Container>
   )
 }
 
