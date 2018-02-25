@@ -80,7 +80,7 @@ class LoginPage extends Component {
         localStorage.setItem(AUTH_TOKEN_KEY, token)
         this.setState({ redirectToReferrer: true })
       } catch (e) {
-        message.error('As credenciais inseridas não são válidas!')
+        message.error('Não conseguimos autenticar suas credenciais')
         this.setState({isLoading: false})
       }
 
@@ -104,14 +104,14 @@ class LoginPage extends Component {
           <Form onSubmit={this.handleSubmit}>
             <FormItem hasFeedback>
               {getFieldDecorator('username', {
-                rules: [{required: true, message: 'Informe sua matrícula!'}]
+                rules: [{required: true, message: 'Precisamos saber sua matrícula'}]
               })(
                 <Input prefix={<PlaceholderIcon type="user" />} placeholder="Matrícula" />
               )}
             </FormItem>
             <FormItem hasFeedback>
               {getFieldDecorator('password', {
-                rules: [{required: true, message: 'Informe sua senha!'}]
+                rules: [{required: true, message: 'Não esqueça a sua senha'}]
               })(
                 <Input prefix={<PlaceholderIcon type="lock" />} type="password" placeholder="Senha" />
               )}
