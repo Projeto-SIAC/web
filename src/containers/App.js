@@ -76,7 +76,7 @@ class App extends Component {
 
   render() {
     return (
-      <AppLayout menu={() => <SiderMenu />}>
+      <AppLayout>
         <Helmet titleTemplate="%s - SIAC" />
         <Switch>
           <Route path="/questoes" component={MyQuestionsPage} />

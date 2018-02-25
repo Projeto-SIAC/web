@@ -27,23 +27,15 @@ class AppLayout extends React.Component {
   render = () => {
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider
-          collapsible
-          collapsed={this.state.collapsed}
-          onCollapse={this.onCollapse}
-        >
+        <Header>
           <Logo src={LogoSrc} />
-          {this.props.menu()}
-        </Sider>
-        <Layout>
-        <Header style={{ background: '#fff', padding: 0 }} />
-          <Content style={{ margin: '0 16px' }}>
-            {this.props.children}
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            2018 <Icon type="copyright" /> Projeto SIAC
-          </Footer>
-        </Layout>
+        </Header>
+        <Content style={{ padding: '0 1rem' }}>
+          {this.props.children}
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>
+          Feito com <Icon type="heart" />
+        </Footer>
       </Layout>
     )
   }
