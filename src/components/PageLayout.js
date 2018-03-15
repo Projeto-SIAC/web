@@ -9,7 +9,7 @@ const Container = styled.div`
 const InnerContainer = styled.main`
   background: #fff;
   padding: 1.75rem;
-  borderRadius: 0.2rem;
+  border-radius: 0.2rem;
 `
 
 const PageLayout = ({breadcrumb, children}) => {

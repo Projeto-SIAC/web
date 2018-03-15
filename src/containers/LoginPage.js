@@ -41,7 +41,7 @@ const Box = styled.main`
 `
 
 const FixedButton = styled(Button)`
-  width: 100%
+  width: 100%;
 `
 
 const PlaceholderIcon = styled(Icon)`
